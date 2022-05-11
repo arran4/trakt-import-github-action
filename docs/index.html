@@ -14,8 +14,7 @@
                 //scopes: { request: ["authorization_code"]}
             })
 
-            async function gettoken() {
-                client.callback()
+            function gettoken() {
                 console.log("here")
                 client.getToken({})
                     .then((token) => {
