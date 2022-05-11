@@ -1,0 +1,10 @@
+{
+    "name": "trakt-import-github-action",
+    "version": "1.0.0",
+    "description": "Import streaming site watch logs to trakt by updating it",
+    "main": "dist/index.js",
+    "dependencies": {
+        "trakt.tv": "^8.1.1"
+    }
+  }
+  
