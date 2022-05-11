@@ -14,16 +14,14 @@
                 //scopes: { request: ["authorization_code"]}
             })
 
-            function gettoken() {
+            async function gettoken() {
                 console.log("here")
-                client.getToken({})
-                    .then((token) => {
-                        console.log("I got the token: ", token)
-                    })
+                let token = await client.getToken()
+                console.log("I got the token: ", token)
             }
 
-            client.callback()
-            console.log(client);
+            client.callback().then(e => console.log("here2", e))
+            console.log("here3", client);
 
         </script>
     </body>
