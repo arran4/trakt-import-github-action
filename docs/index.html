@@ -3,6 +3,7 @@
     </head>
     <body>
         <button onclick="gettoken()">Get token </button>
+        <button onclick="logout()">Logout </button>
         <script type="text/javascript" src="https://unpkg.com/jso/dist/jso.js"></script>
         <script lang="javascript">
             let client = new jso.JSO({
@@ -18,6 +19,10 @@
                 console.log("here")
                 let token = await client.getToken()
                 console.log("I got the token: ", token)
+            }
+
+            function logout() {
+                client.wipeTokens()
             }
 
             client.callback().then(e => console.log("here2", e))
