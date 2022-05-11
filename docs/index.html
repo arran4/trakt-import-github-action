@@ -1,35 +1,27 @@
 <html>
     <head>
-        <script src="https://cdn.jsdelivr.net/npm/client-oauth2@4.3.3/src/client-oauth2.min.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/jso/dist/jso.js"></script>
     </head>
     <body>
-        <button onclick="signin()">Sign in</button>
+        <button onclick="gettoken()">Get token </button>
         <script lang="javascript">
-            var oc = new ClientOAuth2({
-                clientId: 'a7194a79bae514974a729c7c5a474e4b7caf773f445d084a8af87ae033ec3d82',
-                // clientSecret: '123',
-                accessTokenUri: 'https://api.trakt.tv/oauth/access_token',
-                authorizationUri: 'https://api.trakt.tv/oauth/authorize',
-                redirectUri: 'https://arran4.github.io/trakt-import-github-action/',
-                scopes: ['authorization_code']
+            let client = new JSO({
+                client_id: "a7194a79bae514974a729c7c5a474e4b7caf773f445d084a8af87ae033ec3d82.apps.googleusercontent.com",
+                redirect_uri: "https://arran4.github.io/trakt-import-github-action/",
+                access_token_uri: 'https://api.trakt.tv/oauth/access_token',
+                authorization: "https://api.trakt.tv/oauth/authorize",
+                scopes: { request: ["authorization_code"]}
             })
 
-            function signin(e) {
-                e.preventDefault();
-                var uri = oc.code.getUri()
-                console.log(uri)
-                return false;
-            }
-
-            function gettoken() {
-                console.log("here", window.location.href)
-                oc.code.getToken(window.location.href)
-                    .then(function (user) {
-                        console.log("here2", user)
+            async function gettoken() {
+                client.callback()
+                console.log("here")
+                client.getToken({})
+                    .then((token) => {
+                        console.log("I got the token: ", token)
                     })
             }
 
-            gettoken();
         </script>
     </body>
 </html>
