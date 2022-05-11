@@ -1,8 +1,35 @@
 <html>
     <head>
-
+        <script src="https://cdn.jsdelivr.net/npm/client-oauth2@4.3.3/src/client-oauth2.min.js"></script>
     </head>
     <body>
-        Hi
+        <button onclick="signin()"></button>
+        <script lang="javascript">
+            var oc = new ClientOAuth2({
+                clientId: 'a7194a79bae514974a729c7c5a474e4b7caf773f445d084a8af87ae033ec3d82',
+                // clientSecret: '123',
+                accessTokenUri: 'https://api.trakt.tv/oauth/access_token',
+                authorizationUri: 'https://api.trakt.tv/oauth/authorize',
+                redirectUri: 'https://arran4.github.io/trakt-import-github-action/',
+                scopes: ['authorization_code']
+            })
+
+            function signin(e) {
+                e.preventDefault();
+                var uri = oc.code.getUri()
+                console.log(uri)
+                return false;
+            }
+
+            function gettoken() {
+                console.log("here", window.location.href)
+                githubAuth.code.getToken(window.location.href)
+                    .then(function (user) {
+                        console.log("here2", user)
+                    })
+            }
+
+            gettoken();
+        </script>
     </body>
 </html>
