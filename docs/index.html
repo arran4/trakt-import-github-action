@@ -23,7 +23,7 @@
 
             function gettoken() {
                 console.log("here", window.location.href)
-                githubAuth.code.getToken(window.location.href)
+                oc.code.getToken(window.location.href)
                     .then(function (user) {
                         console.log("here2", user)
                     })
