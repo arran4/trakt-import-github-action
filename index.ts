@@ -2,6 +2,7 @@ import * as core from '@actions/core';
 import fetch from 'node-fetch';
 
 async function getAccessToken(redirectUrl: string, clientId: string, clientSecret: string, refreshToken: string) {
+  console.log("Getting access token");
   let data = {
     "grant_type": "refresh_token",
     "refresh_token": refreshToken,
@@ -27,6 +28,7 @@ async function getAccessToken(redirectUrl: string, clientId: string, clientSecre
     console.log(refreshResult);
     throw new Error("Could not get access token");
   }
+  console.log("Got access token");
   return accessToken
 }
 
@@ -44,6 +46,7 @@ async function run() {
   if (lastPost != null) {
     await new Promise(e => setTimeout(e, lastPost.getDate() - new Date().getDate()));
   }
+  console.log("Uploading history sync");
   let fetchResult = await fetch('https://api.trakt.tv/sync/history', {
     method: "POST",
     body: JSON.stringify({
@@ -62,7 +65,7 @@ async function run() {
     }
   });
   lastPost = new Date()
-  console.log(await fetchResult.text())
+  console.log("Done with result", await fetchResult.text())
 
   return "Done"
 }
