@@ -25,6 +25,7 @@
                     body: data,
                     cache: 'no-cache',
                     referrerPolicy: 'strict-origin-when-cross-origin',
+                    mode: 'cors',
                 })
                 document.getElementById("token").value = (await r.text());
             }
