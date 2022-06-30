@@ -41,6 +41,11 @@ async function run() {
   const redirectUrl = "https://arran4.github.io/trakt-import-github-action/"
   const clientId = "a7194a79bae514974a729c7c5a474e4b7caf773f445d084a8af87ae033ec3d82"
   const clientSecret = "4748b934918ffe3d5944fee81f6022ca7bf5a3939cf97e30b15f69598082c13a"
+
+  if (!refreshToken) {
+    throw new Error("Empty refresh token")
+  }
+
   const accessToken = getAccessToken(redirectUrl, clientId, clientSecret, refreshToken)
 
   if (lastPost != null) {
