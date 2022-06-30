@@ -28,8 +28,8 @@
             }
 
             function logout() {
-                document.getElementById("code").value = (await r.text());
-                document.getElementById("token").value = (await r.text());
+                document.getElementById("code").value = "";
+                document.getElementById("token").value = "";
             }
 
             if (window.location.queryParam) {
