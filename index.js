@@ -7243,42 +7243,42 @@ function getAccessToken(redirectUrl, clientId, clientSecret, refreshToken) {
 var lastPost = null;
 function run() {
   return __async(this, null, function* () {
-    try {
-      const refreshToken = core.getInput("trakt-oauth2-refresh-token");
-      const netflixFile = core.getInput("netflix-file");
-      const deleteFiles = core.getInput("delete");
-      const redirectUrl = "https://arran4.github.io/trakt-import-github-action/";
-      const clientId = "a7194a79bae514974a729c7c5a474e4b7caf773f445d084a8af87ae033ec3d82";
-      const clientSecret = "4748b934918ffe3d5944fee81f6022ca7bf5a3939cf97e30b15f69598082c13a";
-      const accessToken = getAccessToken(redirectUrl, clientId, clientSecret, refreshToken);
-      if (lastPost != null) {
-        yield new Promise((e2) => setTimeout(e2, lastPost.getDate() - new Date().getDate()));
-      }
-      let fetchResult = yield fetch("https://api.trakt.tv/sync/history", {
-        method: "POST",
-        body: JSON.stringify({
-          movies: [],
-          shows: [],
-          seasons: [],
-          episodes: []
-        }),
-        referrerPolicy: "origin",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${accessToken}`,
-          "trakt-api-key": clientId,
-          "trakt-api-version": "2"
-        }
-      });
-      lastPost = new Date();
-      console.log(yield fetchResult.text());
-    } catch (error) {
-      core.setFailed(error.message);
+    const refreshToken = core.getInput("trakt-oauth2-refresh-token");
+    const netflixFile = core.getInput("netflix-file");
+    const deleteFiles = core.getInput("delete");
+    const redirectUrl = "https://arran4.github.io/trakt-import-github-action/";
+    const clientId = "a7194a79bae514974a729c7c5a474e4b7caf773f445d084a8af87ae033ec3d82";
+    const clientSecret = "4748b934918ffe3d5944fee81f6022ca7bf5a3939cf97e30b15f69598082c13a";
+    const accessToken = getAccessToken(redirectUrl, clientId, clientSecret, refreshToken);
+    if (lastPost != null) {
+      yield new Promise((e2) => setTimeout(e2, lastPost.getDate() - new Date().getDate()));
     }
+    let fetchResult = yield fetch("https://api.trakt.tv/sync/history", {
+      method: "POST",
+      body: JSON.stringify({
+        movies: [],
+        shows: [],
+        seasons: [],
+        episodes: []
+      }),
+      referrerPolicy: "origin",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${accessToken}`,
+        "trakt-api-key": clientId,
+        "trakt-api-version": "2"
+      }
+    });
+    lastPost = new Date();
+    console.log(yield fetchResult.text());
+    return "Done";
   });
 }
-run().then(console.log).catch(console.error);
+run().then(console.log).catch((e2) => {
+  core.setFailed(e2.message);
+  console.error(e2.message);
+});
 /*! fetch-blob. MIT License. Jimmy Wärting <https://jimmy.warting.se/opensource> */
 /*! formdata-polyfill. MIT License. Jimmy Wärting <https://jimmy.warting.se/opensource> */
 /*! node-domexception. MIT License. Jimmy Wärting <https://jimmy.warting.se/opensource> */
