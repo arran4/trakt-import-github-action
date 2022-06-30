@@ -2,11 +2,13 @@
     <head>
     </head>
     <body>
-        <button onclick="getAuthCode()">Get Authorization Token </button>
-        <input id="code">
+        In order to use this github action you will need the Refresh Token below. This form will help retrieve it using an Oauth2 process flow. This token allows
+        access to the action to the account for adding records.
+        <button onclick="getAuthCode()">Get Authorization Code </button>
+        Auth code (ensure has a value, use "Get Authorization Code" button to getit) <input id="code">
         <button onclick="getToken()">Get token </button>
-        <input id="access_token">
-        <input id="refresh_token">
+        Access Token: <input id="access_token">
+        Refresh Token: <input id="refresh_token"> (Use Get Token when you have an authorization code to get)
         <button onclick="logout()">Logout </button>
         <script lang="javascript">
             let redirectUrl = "https://arran4.github.io/trakt-import-github-action/"
