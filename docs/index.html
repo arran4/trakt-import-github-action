@@ -32,8 +32,8 @@
                 document.getElementById("token").value = "";
             }
 
-            if (window.location.queryParam) {
-                let codeV = window.location.queryParam["code"]
+            if (window.location.search) {
+                let codeV = new URLSearchParams(window.location.search).get("code");
                 if (codeV) {
                     document.getElementById("code").value = codeV;
                 }
