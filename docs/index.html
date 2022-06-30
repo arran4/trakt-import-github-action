@@ -26,6 +26,10 @@
                     cache: 'no-cache',
                     referrerPolicy: 'strict-origin-when-cross-origin',
                     mode: 'cors',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    }
                 })
                 document.getElementById("token").value = (await r.text());
             }
