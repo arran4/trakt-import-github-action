@@ -28,6 +28,7 @@ async function getAccessToken(redirectUrl: string, clientId: string, clientSecre
     console.log(refreshResult);
     throw new Error("Could not get access token");
   }
+  console.log(refreshResult);
   console.log("Got access token");
   return accessToken
 }
