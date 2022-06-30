@@ -2,13 +2,13 @@ name: 'Hello trakt-import-github-action'
 description: 'Scan files, parse, and upload to Trakt'
 main: 'dist/index.js'
 inputs:
-  trakt-oauth2-key:
-    description: 'The oauth2 key, generated using github pages'
+  trakt-oauth2-refresh-token:
+    description: 'The oauth2 refresh token, generated using github pages'
     required: true
   netflix-file:  
-    description: 'The netflix csv file'
+    description: 'The netflix viewing history csv file'
     required: true
-    default: "netflix.csv"
+    default: "NetflixViewingHistory.csv"
   delete:  
     description: 'Delete the file with a commit'
     required: true

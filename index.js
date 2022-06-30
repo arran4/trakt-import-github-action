@@ -3,7 +3,7 @@ const github = require('@actions/github');
 const Trakt = require('trakt.tv');
 
 try {
-  const traktOauth2Key = core.getInput('trakt-oauth2-key');
+  const traktOauth2Key = core.getInput('trakt-oauth2-refresh-token');
   const netflixFile = core.getInput('netflix-file');
   const deleteFiles = core.getInput('delete');
 

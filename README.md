@@ -8,13 +8,13 @@ The basic idea is that you create a private repo then perodically commit your la
 
 ## Inputs
 
-## `trakt-oauth2-key`
+## `trakt-oauth2-refresh-token`
 
-**Required** The oauth2 key, generated using github pages.
+**Required** The oauth2 refresh token, generated using github pages. See https://arran4.github.io/trakt-import-github-action/
 
 ## `netflix-file`
 
-**Required** The netflix csv file.
+**Required** The netflix csv file. From https://www.netflix.com/settings/viewed/ (Profile URLs might differ)
 
 ## `delete`
 
@@ -24,16 +24,16 @@ The basic idea is that you create a private repo then perodically commit your la
 
 Create a private repo. Create an action which triggers on push with the action:
 
-Generate an access token using: https://arran4.github.io/trakt-import-github-action/
+Generate an refresh token using: https://arran4.github.io/trakt-import-github-action/
 
-Upload access token to the github repo's secrets as: TRACKT_ACCESS_KEY
+Upload access token to the github repo's secrets as: TRAKT_REFRESH_TOKEN
 
 ```
 uses: arran4/trakt-import-github-action@v1.0
 with:
-  trakt-oauth2-key: ${{ secrets.TRACKT_ACCESS_KEY }}
-  netflix-file: 'netflix.csv'
+  trakt-oauth2-refresh-token: ${{ secrets.TRAKT_REFRESH_TOKEN }}
+  netflix-file: 'NetflixViewingHistory.csv'
   delete: false
 ```
 
-Then upload `netflix.csv` to it and watch the action run.
+Then upload `NetflixViewingHistory.csv` to it and watch the action run.
