@@ -43,7 +43,6 @@
                         }
                     });
                     let res = await r.json();
-                    console.log(res)
                     document.getElementById("access_token").value = res['access_token'];
                     document.getElementById("refresh_token").value = res['refresh_token'];
                 } catch (e) {
