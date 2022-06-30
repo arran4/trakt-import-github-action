@@ -10,6 +10,7 @@
         <script lang="javascript">
             let redirectUrl = "https://arran4.github.io/trakt-import-github-action/"
             let clientId = "a7194a79bae514974a729c7c5a474e4b7caf773f445d084a8af87ae033ec3d82"
+            let clientSecret = "4748b934918ffe3d5944fee81f6022ca7bf5a3939cf97e30b15f69598082c13a"
 
             async function getAuthCode() {
                 let state = "";
@@ -19,16 +20,22 @@
 
             async function getToken() {
                 let code = document.getElementById("code").value;
-                let data = `grant_type=authorization_code&code=${code}&redirect_uri=https%3A%2F%2Farran4.github.io%2Ftrakt-import-github-action%2F`;
+                let data = {
+                    "grant_type":"authorization_code",
+                    "code":code,
+                    "redirect_uri":redirectUrl,
+                    "client_id": clientId,
+                    "client_secret": clientSecret,
+                };
                 let r = await fetch('https://api.trakt.tv/oauth/token', {
                     method: "POST",
-                    body: data,
+                    body: JSON.stringify(data),
                     cache: 'no-cache',
                     referrerPolicy: 'strict-origin-when-cross-origin',
                     mode: 'cors',
                     headers: {
                         'Accept': 'application/json',
-                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'Content-Type': 'application/json',
                     }
                 })
                 document.getElementById("token").value = (await r.text());
