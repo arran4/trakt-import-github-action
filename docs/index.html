@@ -61,7 +61,7 @@
                 let codeV = new URLSearchParams(window.location.search).get("code");
                 if (codeV) {
                     document.getElementById("code").value = codeV;
-                    window.history.pushState({}, document.title, winodw.location.href.split("?"[0]));
+                    window.history.pushState({}, document.title, window.location.href.split("?"[0]));
                 }
             }
             
