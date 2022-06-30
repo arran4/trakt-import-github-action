@@ -3,12 +3,16 @@
     </head>
     <body>
         In order to use this github action you will need the Refresh Token below. This form will help retrieve it using an Oauth2 process flow. This token allows
-        access to the action to the account for adding records.
-        <button onclick="getAuthCode()">Get Authorization Code </button>
-        Auth code (ensure has a value, use "Get Authorization Code" button to getit) <input id="code">
-        <button onclick="getToken()">Get token </button>
-        Access Token: <input id="access_token">
-        Refresh Token: <input id="refresh_token"> (Use Get Token when you have an authorization code to get)
+        access to the action to the account for adding records. <br/>
+        <button onclick="getAuthCode()">Get Authorization Code </button><br/>
+        Auth code (ensure has a value, use "Get Authorization Code" button to getit)<br/>
+        <input id="code"><br/>
+        <br/>
+        <button onclick="getToken()">Get token </button><br/>
+        Access Token: <input id="access_token"><br/>
+        Refresh Token: <input id="refresh_token"> <br/>
+        (Use Get Token when you have an authorization code to get)<br/>
+        <br/>
         <button onclick="logout()">Logout </button>
         <script lang="javascript">
             let redirectUrl = "https://arran4.github.io/trakt-import-github-action/"
@@ -40,7 +44,7 @@
                         headers: {
                             'Accept': 'application/json',
                             'Content-Type': 'application/json',
-                            "trakt-api-key": clientId, 
+                            "trakt-api-key": clientId,
                             "trakt-api-version": "2",
                         }
                     });
@@ -65,7 +69,7 @@
                     window.history.pushState({}, document.title, window.location.href.split("?")[0]);
                 }
             }
-            
+
         </script>
     </body>
 </html>
