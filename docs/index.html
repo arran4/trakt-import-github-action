@@ -18,18 +18,25 @@
             }
 
             async function getToken() {
-                let code = document.getElementById("code").getValue();
+                let code = document.getElementById("code").value;
                 let data = `grant_type=authorization_code&code=${code}&redirect_uri=https%3A%2F%2Farran4.github.io%2Ftrakt-import-github-action%2F`;
                 let r = await fetch('https://trakt.tv/oauth/token', {
                     method: "POST",
                     body: data
                 })
-                document.getElementById("token").setValue(await r.text());
+                document.getElementById("token").value = (await r.text());
             }
 
             function logout() {
-                document.getElementById("code").setValue(await r.text());
-                document.getElementById("token").setValue(await r.text());
+                document.getElementById("code").value = (await r.text());
+                document.getElementById("token").value = (await r.text());
+            }
+
+            if (window.location.queryParam) {
+                let codeV = window.location.queryParam["code"]
+                if (codeV) {
+                    document.getElementById("code").value = codeV;
+                }
             }
             
         </script>
