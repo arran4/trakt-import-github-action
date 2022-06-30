@@ -27,20 +27,27 @@
                     "client_id": clientId,
                     "client_secret": clientSecret,
                 };
-                let r = await fetch('https://api.trakt.tv/oauth/token', {
-                    method: "POST",
-                    body: JSON.stringify(data),
-                    cache: 'no-cache',
-                    referrerPolicy: 'origin',
-                    mode: 'cors',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                        "trakt-api-key": clientId, 
-                        "trakt-api-version": "2",
-                    }
-                })
-                document.getElementById("token").value = (await r.text());
+                try {
+                    // let r = await fetch('https://trakt.tv/oauth/token', {
+                    let r = await fetch('https://trakt.tv/oauth/token', {
+                        method: "POST",
+                        body: JSON.stringify(data),
+                        cache: 'no-cache',
+                        referrerPolicy: 'origin',
+                        mode: 'cors',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                            "trakt-api-key": clientId, 
+                            "trakt-api-version": "2",
+                        }
+                    });
+                    let res = await r.json();
+                    console.log(res)
+                    document.getElementById("token").value = res;
+                } catch (e) {
+                    console.error(e);
+                }
             }
 
             function logout() {
