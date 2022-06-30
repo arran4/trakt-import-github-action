@@ -7213,6 +7213,7 @@ function fixResponseChunkedTransferBadEnding(request, errorCallback) {
 // index.ts
 function getAccessToken(redirectUrl, clientId, clientSecret, refreshToken) {
   return __async(this, null, function* () {
+    console.log("Getting access token");
     let data = {
       "grant_type": "refresh_token",
       "refresh_token": refreshToken,
@@ -7237,6 +7238,7 @@ function getAccessToken(redirectUrl, clientId, clientSecret, refreshToken) {
       console.log(refreshResult);
       throw new Error("Could not get access token");
     }
+    console.log("Got access token");
     return accessToken;
   });
 }
@@ -7253,6 +7255,7 @@ function run() {
     if (lastPost != null) {
       yield new Promise((e2) => setTimeout(e2, lastPost.getDate() - new Date().getDate()));
     }
+    console.log("Uploading history sync");
     let fetchResult = yield fetch("https://api.trakt.tv/sync/history", {
       method: "POST",
       body: JSON.stringify({
@@ -7271,7 +7274,7 @@ function run() {
       }
     });
     lastPost = new Date();
-    console.log(yield fetchResult.text());
+    console.log("Done with result", yield fetchResult.text());
     return "Done";
   });
 }
