@@ -2,38 +2,36 @@
     <head>
     </head>
     <body>
-        <button onclick="gettoken()">Get token </button>
+        <button onclick="getAuthCode()">Get Authorization Token </button>
+        <input id="code">
+        <button onclick="getToken()">Get token </button>
+        <input id="token">
         <button onclick="logout()">Logout </button>
-        <script type="text/javascript" src="https://unpkg.com/jso/dist/jso.js"></script>
         <script lang="javascript">
-            let client = new jso.JSO({
-                client_id: "a7194a79bae514974a729c7c5a474e4b7caf773f445d084a8af87ae033ec3d82",
-                client_secret: '4748b934918ffe3d5944fee81f6022ca7bf5a3939cf97e30b15f69598082c13a',
-                redirect_uri: "https://arran4.github.io/trakt-import-github-action/",
-                token: 'https://trakt.tv/oauth/token',
-                authorization: "https://trakt.tv/oauth/authorize",
-                response_type: "code"
-                //scopes: { request: ["authorization_code"]}
-            })
 
-            async function gettoken() {
-                console.log("here")
-                let token = await client.getToken()
-                console.log("I got the token: ", token)
+            async function getAuthToken() {
+                let state = ""
+                let redirectUrl = "https://arran4.github.io/trakt-import-github-action/"
+                let clientId = "a7194a79bae514974a729c7c5a474e4b7caf773f445d084a8af87ae033ec3d82"
+                let queryParam = `response_type=code&state=${encodeURIComponent(state)}&redirect_uri=${encodeURIComponent(redirectUrl)}&client_id=${encodeURIComponent(clientId)}`
+                window.location.replace(`https://trakt.tv/oauth/authorize?${queryParam}`)
+            }
+
+            async function getToken() {
+                let code = document.getElementById("code").getValue();
+                let data = `grant_type=authorization_code&code=${code}&redirect_uri=https%3A%2F%2Farran4.github.io%2Ftrakt-import-github-action%2F`;
+                let r = await fetch('https://trakt.tv/oauth/token', {
+                    method: "POST",
+                    body: data
+                })
+                document.getElementById("token").setValue(await r.text());
             }
 
             function logout() {
-                client.wipeTokens()
+                document.getElementById("code").setValue(await r.text());
+                document.getElementById("token").setValue(await r.text());
             }
             
-            let cb = client.callback();
-            if (cb) {
-                cb.then(e => console.log("here2", e))
-            } else {
-                console.log("Callback returned", cb)
-            }
-            console.log("here3", client);
-
         </script>
     </body>
 </html>
