@@ -5,7 +5,8 @@
         <button onclick="getAuthCode()">Get Authorization Token </button>
         <input id="code">
         <button onclick="getToken()">Get token </button>
-        <input id="token">
+        <input id="access_token">
+        <input id="refresh_token">
         <button onclick="logout()">Logout </button>
         <script lang="javascript">
             let redirectUrl = "https://arran4.github.io/trakt-import-github-action/"
@@ -44,7 +45,8 @@
                     });
                     let res = await r.json();
                     console.log(res)
-                    document.getElementById("token").value = res;
+                    document.getElementById("access_token").value = res['access_token'];
+                    document.getElementById("refresh_token").value = res['refresh_token'];
                 } catch (e) {
                     console.error(e);
                 }
@@ -52,7 +54,8 @@
 
             function logout() {
                 document.getElementById("code").value = "";
-                document.getElementById("token").value = "";
+                document.getElementById("access_token").value = "";
+                document.getElementById("refresh_token").value = "";
             }
 
             if (window.location.search) {
