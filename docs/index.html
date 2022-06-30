@@ -36,6 +36,8 @@
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
+                        "trakt-api-key": clientId, 
+                        "trakt-api-version": "2",
                     }
                 })
                 document.getElementById("token").value = (await r.text());
