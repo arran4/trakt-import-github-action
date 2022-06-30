@@ -7255,7 +7255,7 @@ function run() {
     if (!refreshToken) {
       throw new Error("Empty refresh token");
     }
-    const accessToken = getAccessToken(redirectUrl, clientId, clientSecret, refreshToken);
+    const accessToken = yield getAccessToken(redirectUrl, clientId, clientSecret, refreshToken);
     if (lastPost != null) {
       yield new Promise((e2) => setTimeout(e2, lastPost.getDate() - new Date().getDate()));
     }

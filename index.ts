@@ -47,7 +47,7 @@ async function run() {
     throw new Error("Empty refresh token")
   }
 
-  const accessToken = getAccessToken(redirectUrl, clientId, clientSecret, refreshToken)
+  const accessToken = await getAccessToken(redirectUrl, clientId, clientSecret, refreshToken)
 
   if (lastPost != null) {
     await new Promise(e => setTimeout(e, lastPost.getDate() - new Date().getDate()));
