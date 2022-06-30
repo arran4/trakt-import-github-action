@@ -29,7 +29,6 @@
                     "client_secret": clientSecret,
                 };
                 try {
-                    // let r = await fetch('https://trakt.tv/oauth/token', {
                     let r = await fetch('https://trakt.tv/oauth/token', {
                         method: "POST",
                         body: JSON.stringify(data),
@@ -62,6 +61,7 @@
                 let codeV = new URLSearchParams(window.location.search).get("code");
                 if (codeV) {
                     document.getElementById("code").value = codeV;
+                    window.history.pushState({}, document.title, winodw.location.href.split("?"[0]));
                 }
             }
             
