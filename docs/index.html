@@ -25,8 +25,13 @@
             function logout() {
                 client.wipeTokens()
             }
-
-            client.callback().then(e => console.log("here2", e))
+            
+            let cb = client.callback();
+            if (cb) {
+                cb.then(e => console.log("here2", e))
+            } else {
+                console.log("Callback returned", cb)
+            }
             console.log("here3", client);
 
         </script>
