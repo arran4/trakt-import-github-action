@@ -20,7 +20,7 @@
             async function getToken() {
                 let code = document.getElementById("code").value;
                 let data = `grant_type=authorization_code&code=${code}&redirect_uri=https%3A%2F%2Farran4.github.io%2Ftrakt-import-github-action%2F`;
-                let r = await fetch('https://api.rakt.tv/oauth/token', {
+                let r = await fetch('https://api.trakt.tv/oauth/token', {
                     method: "POST",
                     body: data
                 })
