@@ -12,7 +12,7 @@ try {
     // client_secret: <the_client_secret>
   };
   const trakt = new Trakt(options);
-  trakt._authentication.access_token = traktOauth2Key
+  trakt._authentication.refresh_token = traktOauth2Key
   console.log(trakt.calendars.my.shows())
 } catch (error) {
   core.setFailed(error.message);
