@@ -11,7 +11,7 @@
         "trakt.tv": "^8.1.1"
     },
     "devDependencies": {
-        "esbuild": "^0.14.48"
+        "esbuild": "^0.25.0"
     },
     "scripts": {
         "build": "esbuild index.ts --bundle --outfile=index.js --platform=node"
